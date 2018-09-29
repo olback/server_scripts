@@ -1,0 +1,22 @@
+# github.com/olback
+
+# Create directory for log files
+mkdir /var/log/nginx/$1
+
+# Create directory for source files
+mkdir /var/www/$1
+
+# Stop nginx so that we can generate a new cert
+systemctl stop nginx.service
+
+# Generate a new certificate
+certbot certonly -d $1 -d www.$1 --standalone
+
+# Create nginx template
+node nginx-template $1
+
+# Enable site
+ln -s /etc/nginx/sites-available/$1 /etc/nginx/sites-enabled/$1
+
+# Start nginx again
+systemctl start nginx.service
