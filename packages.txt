@@ -12,3 +12,4 @@ npm/yarn
 # libraries and utilities
 libssl-dev
 pkg-config
+libpq-dev
