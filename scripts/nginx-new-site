@@ -10,7 +10,7 @@ mkdir /var/www/$1
 systemctl stop nginx.service
 
 # Generate a new certificate
-certbot certonly -d $1 -d www.$1 --standalone
+certbot certonly -d $1 -d www.$1 --standalone --rsa-key-size 4096 --noninteractive
 
 # Create nginx template
 node nginx-template $1
