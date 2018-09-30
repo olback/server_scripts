@@ -18,7 +18,6 @@ server {
 
     ssl_certificate /etc/letsencrypt/live/${site}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/${site}/privkey.pem;
-    ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
 
     error_log /var/log/nginx/${site}/error.log warn;
     access_log /var/log/nginx/${site}/access.log;
