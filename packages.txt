@@ -13,3 +13,6 @@ npm/yarn
 libssl-dev
 pkg-config
 libpq-dev
+whois
+php-cgi
+php-fpm
