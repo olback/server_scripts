@@ -13,7 +13,7 @@ const template = `
 
 server {
 
-    listen 443 ssl http2;
+    listen 443 ssl http2 spdy;
     server_name ${site} www.${site};
 
     ssl_certificate /etc/letsencrypt/live/${site}/fullchain.pem;
@@ -31,7 +31,7 @@ server {
 
     listen 80;
     server_name ${site} www.${site};
-    rewrite ^/(.*)$ https://${site}/$1 permanent;
+    rewrite 301 https://${site}$request_uri;
 
 }
 `;
