@@ -31,7 +31,8 @@ server {
 
     listen 80;
     server_name ${site} www.${site};
-    rewrite 301 https://${site}$request_uri;
+    # rewrite 301 https://${site}$request_uri;
+    rewrite ^/(.*)$ https://${site}/$1 permanent;
 
 }
 `;
