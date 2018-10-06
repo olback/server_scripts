@@ -14,7 +14,7 @@ const template = `
 server {
 
     listen 443 ssl http2 spdy;
-    server_name ${site} www.${site};
+    server_name ${site};
 
     ssl_certificate /etc/letsencrypt/live/${site}/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/${site}/privkey.pem;
@@ -27,11 +27,16 @@ server {
 
 }
 
+# Redirect all traffic to https://${site}
 server {
 
     listen 80;
+    listen 443 ssl http2 spdy;
     server_name ${site} www.${site};
-    # rewrite 301 https://${site}$request_uri;
+
+    ssl_certificate /etc/letsencrypt/live/${site}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/${site}/privkey.pem;
+
     rewrite ^/(.*)$ https://${site}/$1 permanent;
 
 }
