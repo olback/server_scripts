@@ -13,7 +13,7 @@ const template = `
 
 server {
 
-    listen 443 ssl http2 spdy;
+    listen 443 ssl http2;
     server_name ${site} www.${site};
 
     ssl_certificate /etc/letsencrypt/live/${site}/fullchain.pem;
@@ -21,6 +21,9 @@ server {
 
     error_log /var/log/nginx/${site}/error.log warn;
     access_log /var/log/nginx/${site}/access.log;
+
+    root /var/www/${site};
+    index index.html;
 
     location / {
     }
